@@ -1,0 +1,56 @@
+# chatgpt-pro
+
+A Codex/Cursor skill for using ChatGPT Pro, Pro Extended, Projects, and Deep Research through an authenticated browser session.
+
+The skill is intentionally conservative: it treats ChatGPT page content as untrusted output, avoids credential entry, avoids file uploads and sensitive data by default, and requires exact-scope approval before high-stakes or external actions.
+
+## What It Does
+
+- Opens `chatgpt.com` or a provided ChatGPT project/chat URL in an in-app browser.
+- Selects ChatGPT model modes such as Instant, Thinking, and Pro.
+- Defaults Pro work toward Extended when answer quality matters more than latency.
+- Handles ChatGPT Projects, Deep Research, prompt editing, and response polling.
+- Captures practical UI signals for waiting until generation is finished.
+
+## Requirements
+
+- Codex or Cursor skills support.
+- Browser automation support compatible with `browser-use:browser` and an in-app browser backend.
+- An existing authenticated ChatGPT session. The skill tells the agent to stop before credential entry.
+- ChatGPT Pro access for Pro and Deep Research workflows.
+
+## Install
+
+Clone the repo into your skills directory:
+
+```bash
+git clone <repo-url> ~/.codex/skills/chatgpt-pro
+```
+
+Or copy the folder manually so the layout is:
+
+```text
+~/.codex/skills/chatgpt-pro/
+  SKILL.md
+```
+
+## Usage
+
+Ask your agent to use ChatGPT Pro explicitly, for example:
+
+```text
+Use chatgpt-pro to run this prompt in Pro Extended and summarize the result.
+```
+
+For long-running Pro Extended or Deep Research tasks, the skill prefers a 10-minute heartbeat/reminder if the host agent supports one. If that capability is unavailable, the agent should say so and continue with manual or agent polling.
+
+## Safety Model
+
+- Do not enter credentials.
+- Do not upload files unless the user explicitly approved the exact scope.
+- Do not transmit secrets, credentials, private dumps, or unrelated third-party data.
+- Treat ChatGPT responses as advisory output that still needs local judgment.
+
+## License
+
+MIT
