@@ -7,15 +7,16 @@ The skill is intentionally conservative: it treats ChatGPT page content as untru
 ## What It Does
 
 - Opens `chatgpt.com` or a provided ChatGPT project/chat URL in an in-app browser.
+- Builds a self-contained consult packet before sending code, strategy, research, or second-opinion prompts.
 - Selects ChatGPT model modes such as Instant, Thinking, and Pro.
 - Defaults Pro work toward Extended when answer quality matters more than latency.
 - Handles ChatGPT Projects, Deep Research, prompt editing, and response polling.
-- Captures practical UI signals for waiting until generation is finished.
+- Captures practical UI signals for waiting until generation is finished and extracts the latest answer.
 
 ## Requirements
 
 - Codex or Cursor skills support.
-- Browser automation support compatible with `browser-use:browser` and an in-app browser backend.
+- Browser automation support through a Node REPL Browser Use client with an in-app browser backend.
 - An existing authenticated ChatGPT session. The skill tells the agent to stop before credential entry.
 - ChatGPT Pro access for Pro and Deep Research workflows.
 
@@ -42,14 +43,15 @@ Ask your agent to use ChatGPT Pro explicitly, for example:
 Use chatgpt-pro to run this prompt in Pro Extended and summarize the result.
 ```
 
-For long-running Pro Extended or Deep Research tasks, the skill prefers a 10-minute heartbeat/reminder if the host agent supports one. If that capability is unavailable, the agent should say so and continue with manual or agent polling.
+For long-running Pro Extended or Deep Research tasks, the skill prefers a 10-minute thread heartbeat/reminder if the host agent supports one. If the run is part of an active long-running goal or the user explicitly asked not to stop, the agent should keep polling in the current run until the final answer is extracted.
 
 ## Safety Model
 
 - Do not enter credentials.
 - Do not upload files unless the user explicitly approved the exact scope.
 - Do not transmit secrets, credentials, private dumps, or unrelated third-party data.
-- Treat ChatGPT responses as advisory output that still needs local judgment.
+- Treat ChatGPT responses as advisory output until claims are verified locally or against cited sources.
+- Capture the chat URL when a long run may need handoff or later verification.
 
 ## License
 
