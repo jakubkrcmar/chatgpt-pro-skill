@@ -25,7 +25,7 @@ The skill is intentionally conservative: it treats ChatGPT page content as untru
 Clone the repo into your skills directory:
 
 ```bash
-git clone <repo-url> ~/.codex/skills/chatgpt-pro
+git clone https://github.com/jakubkrcmar/chatgpt-pro-skill.git ~/.codex/skills/chatgpt-pro
 ```
 
 Or copy the folder manually so the layout is:
