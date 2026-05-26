@@ -53,6 +53,15 @@ For long-running Pro Extended or Deep Research tasks, the skill prefers a 10-min
 - Treat ChatGPT responses as advisory output until claims are verified locally or against cited sources.
 - Capture the chat URL when a long run may need handoff or later verification.
 
+## Changelog
+
+### 2026-05-26
+
+- Added consult-packet guidance for code, strategy, research, and second-opinion prompts.
+- Clarified the Node REPL Browser Use path for in-app browser automation.
+- Tightened long-run handling for Pro Extended and Deep Research, including heartbeat and active-goal behavior.
+- Generalized ChatGPT Project routing so public installs can use any named project.
+
 ## License
 
 MIT
